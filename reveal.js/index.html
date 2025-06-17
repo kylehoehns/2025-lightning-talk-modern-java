@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>From Boilerplate to Beautiful: Java’s Modern Transformation</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/blood.css">
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		:root {
+			--r-heading2-size: 1.8em;
+		}
+	</style>
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+
+		<section>
+			<h2>From Boilerplate to Beautiful</h2>
+			<h4>Java’s Modern Transformation</h4>
+		</section>
+
+		<section>
+			<h2>Java Release Cadence</h2>
+			<p><strong>LTS releases. Faster cycles. Better features.</strong></p>
+			<ul>
+				<li><strong>Java 6</strong> - 2006 (Early-era LTS)</li>
+				<li><strong>Java 8</strong> - 2014 (Breakout version)</li>
+				<li><strong>Java 11</strong> - 2018 (Modern LTS)</li>
+				<li><strong>Java 17</strong> - 2021 (Modern LTS, cloud-native ready)</li>
+				<li><strong>Java 21</strong> - 2023 (Virtual threads & pattern matching)</li>
+				<li><strong>Java 25</strong> - 2025 (Planned, LTS)</li>
+			</ul>
+			<p><strong>New Java every 6 months. LTS every 2 years.</strong></p>
+		</section>
+
+		<section>
+			<h2>Before: Boilerplate Everywhere</h2>
+			<pre><code class="language-java">public class User {
+  private String name;
+  private int age;
+  public User(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+  public String getName() {
+    return name;
+  }
+  public int getAge() {
+    return age;
+  }
+}</code></pre>
+			<p><strong>The classic verbosity tax.</strong></p>
+		</section>
+
+		<section>
+			<h2>After: Java Records</h2>
+			<pre><code class="language-java">record User(String name, int age) {}
+
+var user = new User("Alice", 30);
+System.out.println(user.name());</code></pre>
+			<p><strong>Less code. Same power.</strong></p>
+		</section>
+
+		<section>
+			<h2>Before: instanceof Dance</h2>
+			<pre><code class="language-java">if (obj instanceof String) {
+  String s = (String) obj;
+  if (s.length() > 10) {
+    System.out.println("Big string: " + s);
+  }
+}</code></pre>
+			<p><strong>Clunky and repetitive.</strong></p>
+		</section>
+
+		<section>
+			<h2>After: Pattern Matching</h2>
+			<pre><code class="language-java">if (obj instanceof String s && s.length() > 10) {
+  System.out.println("Big string: " + s);
+}</code></pre>
+			<p><strong>Cleaner and safer.</strong></p>
+		</section>
+
+		<section>
+			<h2>Before: Classic Switch</h2>
+			<pre><code class="language-java">String msg;
+switch (status) {
+  case OK:
+    msg = "✅ Success";
+    break;
+  case ERROR:
+    msg = "❌ Fail";
+    break;
+  default:
+    msg = "🤷 Unknown";
+}</code></pre>
+			<p><strong>Breaks, fallthroughs, and lots of noise.</strong></p>
+		</section>
+
+		<section>
+			<h2>After: Switch Expressions</h2>
+			<pre><code class="language-java">String msg = switch (status) {
+  case OK -> "✅ Success";
+  case ERROR -> "❌ Fail";
+  default -> "🤷 Unknown";
+};</code></pre>
+			<p><strong>Compact and expressive.</strong></p>
+		</section>
+
+		<section>
+			<h2>Before: Thread Pool Boilerplate</h2>
+			<pre><code class="language-java">ExecutorService executor = Executors.newFixedThreadPool(10);
+for (int i = 0; i < 100; i++) {
+  final int taskId = i;
+  executor.submit(() -> {
+    System.out.println("Handling request " + taskId);
+    // simulate work
+  });
+}
+executor.shutdown();</code></pre>
+			<p><strong>Manual pool sizing, lifecycle management, and verbose submission.</strong></p>
+		</section>
+
+		<section>
+			<h2>After: Virtual Threads</h2>
+			<pre><code class="language-java">for (int i = 0; i < 100; i++) {
+  final int taskId = i;
+  Thread.startVirtualThread(() -> {
+    System.out.println("Handling request " + taskId);
+    // simulate work
+  });
+}</code></pre>
+			<p><strong>No thread pool. Lightweight, scalable, and simple.</strong></p>
+		</section>
+
+
+
+		<section>
+			<h2>Spring Boot</h2>
+			<pre><code class="language-java">@RestController
+public class HelloController {
+  @GetMapping("/")
+  String hello() {
+    return "Hello Source Allies!";
+  }
+}</code></pre>
+			<p><strong>Build APIs fast with real tools.</strong></p>
+		</section>
+
+		<section>
+			<h2>GraalVM Native Compilation</h2>
+			<pre><code class="language-bash">./mvnw package -Pnative</code></pre>
+			<p><strong>Startup in milliseconds. Memory usage slashed.</strong></p>
+		</section>
+
+		<section>
+			<h3>JVM vs Native</h3>
+			<table>
+				<thead>
+				<tr>
+					<th></th>
+					<th>JVM</th>
+					<th>Native (GraalVM)</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>Startup Time</td>
+					<td>~1.5 seconds</td>
+					<td>~40 milliseconds</td>
+				</tr>
+				<tr>
+					<td>Memory Usage</td>
+					<td>250MB+</td>
+					<td>~50MB</td>
+				</tr>
+				<tr>
+					<td>Warmup</td>
+					<td>Needs JIT warmup</td>
+					<td>Runs at full speed immediately</td>
+				</tr>
+				</tbody>
+			</table>
+			<p><strong>Still Java. Just more cloud-friendly.</strong></p>
+		</section>
+
+		<section>
+			<h2>Modern Java in One Line</h2>
+			<pre><code class="language-java">List&lt;Task&gt; todos = tasks.stream()
+  .filter(t -> !t.completed())
+  .toList();</code></pre>
+			<p><strong>Readable. Functional. Beautiful.</strong></p>
+		</section>
+
+		<section>
+			<h2>Wrap-up</h2>
+			<p><strong>Modern Java = Fast, Clean, Cloud-Ready</strong></p>
+			<p>Turns out, you can teach an old language new tricks.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+	Reveal.initialize({
+		hash: true,
+		slideNumber: true,
+		plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
+		transition: 'slide'
+	});
+</script>
+</body>
+</html>
