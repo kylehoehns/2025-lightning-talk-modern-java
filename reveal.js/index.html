@@ -5,10 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>From Boilerplate to Beautiful: Java’s Modern Transformation</title>
 
-	<link rel="stylesheet" href="dist/reset.css">
-	<link rel="stylesheet" href="dist/reveal.css">
-	<link rel="stylesheet" href="dist/theme/blood.css">
-	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reset.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/blood.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/monokai.css">
 	<style>
 		:root {
 			--r-heading2-size: 1.8em;
@@ -106,9 +106,8 @@ switch (status) {
 			<pre><code class="language-java">String msg = switch (status) {
   case OK -> "✅ Success";
   case ERROR -> "❌ Fail";
-  default -> "🤷 Unknown";
 };</code></pre>
-			<p><strong>Compact and expressive.</strong></p>
+			<p><strong>Compact, expressive, and safe.</strong></p>
 		</section>
 
 		<section>
@@ -186,14 +185,6 @@ public class HelloController {
 				</tbody>
 			</table>
 			<p><strong>Still Java. Just more cloud-friendly.</strong></p>
-		</section>
-
-		<section>
-			<h2>Modern Java in One Line</h2>
-			<pre><code class="language-java">List&lt;Task&gt; todos = tasks.stream()
-  .filter(t -> !t.completed())
-  .toList();</code></pre>
-			<p><strong>Readable. Functional. Beautiful.</strong></p>
 		</section>
 
 		<section>
